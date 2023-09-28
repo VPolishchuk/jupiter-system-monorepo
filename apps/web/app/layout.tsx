@@ -1,4 +1,9 @@
+import { Suspense } from 'react';
+
+import Loading from './loading';
+
 import './global.css';
+
 
 export const metadata = {
   title: 'Welcome to apps/web',
@@ -12,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={<Loading />}>{children}</Suspense>
+      </body>
     </html>
   );
 }

@@ -6,14 +6,17 @@ import { trpc } from './trpc';
 export default function Clientside() {
   const [greeting, setGreeting] = useState<any>('');
   const [greeting2, setGreeting2] = useState<any>('');
+  const [greeting3, setGreeting3] = useState<any>('');
   // const getData = async () => {
   //   const res = await fetch('./api/hello');
   //   console.log(' res   ' , res)
   //   const data = await res.json();
   //   setGreeting(data);
-  // }
+
+
   console.log(' greeting   ', greeting);
   console.log(' greeting2   ', greeting2);
+  console.log(' greeting3   ', greeting3);
   useEffect(() => {
     trpc.hello.query({ name: 'werewf sdlkfjsdlfkjx ' }).then((response) => {
       console.log('response', response);
@@ -25,7 +28,14 @@ export default function Clientside() {
       setGreeting(response);
     });
 
-    // getData()
+    trpc.singup.query({
+      email: 'test@example.com',
+      password: 'test'
+    }).then((response) => {
+      console.log('response', response);
+      setGreeting3(response);
+    });
+
   }, []);
 
   return (

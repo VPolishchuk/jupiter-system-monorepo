@@ -6,7 +6,8 @@
     "dev:web": "nx run apps/web:serve",
     "dev:server": "nx run apps/server:serve",
     "watch": "nx watch --all -- echo $NX_PROJECT_NAME",
-    "dev": "nx run-many -target=serve -p --all & pnpm run watch",
+    "dev-watch": "nx run-many -target=serve -p --all & pnpm run watch",
+    "dev": "nx run-many -target=serve -p --all",
     "start:all": "nx run-many --target=serve --projects=apps/web,apps/server --parallel",
     "build:all": "nx run-many -target=build -p --all"
   },

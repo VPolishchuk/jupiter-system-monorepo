@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-
+// import { motion } from 'framer-motion';
 import Loading from './loading';
 
 import './global.css';
@@ -17,7 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body
+        // initial={{ opacity: 0 }}
+        // animate={{ opacity: 1 }}
+        // exit={{ opacity: 0 }}
+      >
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>

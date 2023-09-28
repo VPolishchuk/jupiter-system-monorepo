@@ -4,9 +4,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
 import { TrpcModule } from './trpc/trpc.module';
+import { TypeormModule } from './typeorm/typeorm.module';
 
 @Module({
-  imports: [TrpcModule],
+  imports: [TrpcModule, TypeormModule],
   controllers: [AppController],
   providers: [AppService, TrpcModule],
 })

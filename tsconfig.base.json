@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jupiter-system-monorepo/data-access": ["libs/data-access/src/index.ts"],
       "@server/*": ["./apps/server/src/*"],
       "@web/*": ["./apps/web/*"]
     }

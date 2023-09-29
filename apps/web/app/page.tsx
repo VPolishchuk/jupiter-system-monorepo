@@ -6,7 +6,12 @@ export default async function Index(props: any) {
   console.log('Index trpc', trpc);
   const response = await trpc.hello.query({ name: 'test     dlkfjdsal    aldkfjsld' });
   const response2 = await trpc.greeting.query();
+  const singup = await trpc.singup.query({
+    email: 'test@example.com',
+    password: 'test'
+  });
   const { greeting } = response;
+  console.log('singup  ssr       ______', singup);
   console.log('greeting  ssr       ______', greeting);
   console.log('response2  ssr       ______', response2);
   // console.log('response         ______', response)
@@ -31,6 +36,11 @@ export default async function Index(props: any) {
 
           <span className="block text-indigo-600">
             Start your free trial today. server (SSR)- {response2}
+          </span>
+
+
+          <span className="block text-indigo-600">
+            {/* singup server (SSR)- {singup} */}
           </span>
         </h2>
         <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">

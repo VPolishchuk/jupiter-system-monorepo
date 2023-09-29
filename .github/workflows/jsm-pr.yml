@@ -1,0 +1,35 @@
+name: jsm-pr
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the Code
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      # Set Nx SHAs
+      - uses: nrwl/nx-set-shas@v3
+
+      # Install pnpm
+      - name: Install pnpm
+        run: curl -f https://get.pnpm.io/v6.js | node - add --global pnpm
+
+      # Use pnpm to install dependencies
+      - run: pnpm install --frozen-lockfile
+
+      # Format Check
+      - run: npx nx format:check
+
+      # Lint Affected Projects
+      - run: npx nx affected --target=lint --parallel=2
+
+      # Build Affected Projects (excluding web, admin, server)
+      - run: OKKINO_ENV=build npx nx affected --target=build --parallel=3 --exclude=web,server

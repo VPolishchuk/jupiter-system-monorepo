@@ -22,6 +22,18 @@ export class TrpcRouter {
           // greeting: `Hello  Bilbo`,
         };
       }),
+    singup: this.trpc.procedure
+      .input(
+        z.object({
+          email: z.string(),
+          password: z.string().optional(),
+        })
+      )
+      .query(({ input, ...res }) => {
+        console.log('res     ', res)
+        const { email, password } = input;
+        return `Hello email: ${email}, password: ${password}`;
+      }),
   });
 
   async applyMiddleware(app: INestApplication) {

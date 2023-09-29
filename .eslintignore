@@ -1,1 +1,5 @@
 node_modules
+apps/web/public/sw.js
+apps/web/public/sw.js.map
+apps/web/public/workbox-95bb2c07.js
+apps/web/public/workbox-95bb2c07.js.map

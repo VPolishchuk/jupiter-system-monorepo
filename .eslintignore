@@ -1,6 +1,5 @@
 node_modules
-apps/web/app/Clientside.tsx
-apps/web/app/loading.tsx
-apps/web/app/page.tsx
 apps/web/public/sw.js
-apps/web/public/workbox-8c8aeaed.js
+apps/web/public/sw.js.map
+apps/web/public/workbox-95bb2c07.js
+apps/web/public/workbox-95bb2c07.js.map

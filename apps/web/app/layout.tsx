@@ -1,3 +1,5 @@
+// 'use client';
+
 import { Suspense } from 'react';
 import { Inter } from 'next/font/google';
 // import { motion } from 'framer-motion';
@@ -21,11 +23,33 @@ const inter = Inter({
   variable: '--font-inter'
 });
 
+// // Self-invoking function to register the service worker
+// (function registerServiceWorker() {
+//   if ('serviceWorker' in navigator) {
+//     navigator.serviceWorker.register('/sw.js').then(function(registration) {
+//       console.log('ServiceWorker registration successful with scope: ', registration.scope);
+//     }).catch(function(err) {
+//       console.log('ServiceWorker registration failed: ', err);
+//     });
+//   }
+// })();
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // useEffect(() => {
+  //   // Check if service workers are supported
+  //   if ('serviceWorker' in navigator) {
+  //     // Register the service worker
+  //     navigator.serviceWorker.register('/sw.js').then(function(registration) {
+  //       console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  //     }, function(err) {
+  //       console.log('ServiceWorker registration failed: ', err);
+  //     });
+  //   }
+  // }, []); // <-- The empty array means this useEffect will run once after the component mounts
   return (
     <html
       lang="en" className={inter.variable}
@@ -52,12 +76,23 @@ export default function RootLayout({
         {/* <meta property="og:url" content="https://yourdomain.com" />
         <meta property="og:image" content="https://yourdomain.com/icons/apple-touch-icon.png" /> */}
         {/* ... other meta tags */}
+        <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function registerServiceWorker() {
+                  if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+                      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    }).catch(function(err) {
+                      console.log('ServiceWorker registration failed: ', err);
+                    });
+                  }
+                })();
+              `,
+            }}
+          />
       </head>
-      <body
-        // initial={{ opacity: 0 }}
-        // animate={{ opacity: 1 }}
-        // exit={{ opacity: 0 }}
-      >
+      <body>
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </body>
     </html>
